@@ -9,20 +9,22 @@ export default function Home() {
   return (
     <div>
       {/* <Menu /> */}
-      <SidebarProvider>
-        <Menu />
-        <div className="w-full h-screen flex flex-col justify-between">
+      <div className="w-full h-screen flex flex-col justify-between">
+        <div>
+          <Header />
           <div>
-            <Header />
-            <SidebarTrigger />
-            <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8">
-              <About />
-              <Calendar />
-            </main>
+            <SidebarProvider>
+              <Menu />
+              <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8">
+                <SidebarTrigger />
+                <About />
+                <Calendar />
+              </main>
+            </SidebarProvider>
           </div>
-          <Footer />
         </div>
-      </SidebarProvider>
+        <Footer />
+      </div>
     </div>
   );
 }

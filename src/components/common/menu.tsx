@@ -42,8 +42,8 @@ const items = [
 
 export default function Menu() {
   return (
-    <Sidebar>
-      <SidebarContent>
+    <Sidebar style={{ zIndex: "-1" }}>
+      <SidebarContent style={{ paddingTop: "55px" }}>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
