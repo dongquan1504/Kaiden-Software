@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  // SidebarTrigger,
 } from "@/components/ui/sidebar"
 
 // Menu items.
@@ -44,6 +45,7 @@ export default function Menu() {
   return (
     <Sidebar style={{ zIndex: "-1" }}>
       <SidebarContent style={{ paddingTop: "55px" }}>
+        {/* <SidebarTrigger /> */}
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
