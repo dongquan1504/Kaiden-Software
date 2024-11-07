@@ -1,5 +1,6 @@
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
+import { PAGE_URL } from "@/constant/url"
 import {
   Sidebar,
   SidebarContent,
@@ -16,35 +17,35 @@ import {
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: PAGE_URL.HOME,
     icon: Home,
   },
   {
+    title: "Productions",
+    url: PAGE_URL.PRODUCTIONS,
+    icon: Search,
+  },
+  {
     title: "Inbox",
-    url: "#",
+    url: PAGE_URL.INBOX,
     icon: Inbox,
   },
   {
     title: "Calendar",
-    url: "calendar",
+    url: PAGE_URL.CALENDAR,
     icon: Calendar,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
     title: "Settings",
-    url: "#",
+    url: PAGE_URL.SETTINGS,
     icon: Settings,
   },
 ]
 
 export default function Menu() {
   return (
-    <Sidebar style={{ zIndex: "-1" }}>
-      <SidebarContent style={{ paddingTop: "55px" }}>
+    <Sidebar style={{ marginTop: "55px", marginBottom: "154px" }}>
+      <SidebarContent>
         {/* <SidebarTrigger /> */}
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>

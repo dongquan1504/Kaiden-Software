@@ -1,30 +1,9 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import Footer from "@/components/common/footer";
-import Header from "@/components/common/header";
-import Menu from "@/components/common/menu";
+"use client"
+
 import About from "@/components/section/about";
-import Calendar from "@/components/section/calendar";
 
 export default function Home() {
   return (
-    <div>
-      {/* <Menu /> */}
-      <div className="w-full h-screen flex flex-col justify-between">
-        <div>
-          <Header />
-          <div>
-            <SidebarProvider>
-              <Menu />
-              <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8">
-                <SidebarTrigger />
-                <About />
-                <Calendar />
-              </main>
-            </SidebarProvider>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    </div>
+    <About />
   );
 }

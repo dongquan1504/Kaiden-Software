@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import * as React from "react"
@@ -162,7 +163,9 @@ interface SelectProps {
   }
 }
 
-export default function SelectCustomerForm({ placeholder = "select...", items = [], formFieldProps, ...rest }: SelectProps) {
+export default function SelectCustomerForm({ placeholder = "select...", items = [], formFieldProps }: SelectProps) {
+  // const params = rest
+
   return (
     <Select
       onValueChange={(keySelected: any) => {
