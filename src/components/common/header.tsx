@@ -3,7 +3,7 @@ import icon from "@/assets/images/splash.png";
 
 export default function Header() {
   return (
-    <header className="row-start-3 flex gap-6 flex-wrap items-center justify-between px-6 bg-neutral-700">
+    <header className="w-full fixed row-start-3 flex gap-6 flex-wrap items-center justify-between px-6 bg-neutral-700">
       <div className="flex items-center">
         <Image
           aria-hidden

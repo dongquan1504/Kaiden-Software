@@ -44,7 +44,7 @@ const items = [
 
 export default function Menu() {
   return (
-    <Sidebar style={{ marginTop: "55px", marginBottom: "154px" }}>
+    <Sidebar style={{ marginTop: "55px" }}>
       <SidebarContent>
         {/* <SidebarTrigger /> */}
         <SidebarGroup>

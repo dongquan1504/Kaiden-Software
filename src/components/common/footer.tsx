@@ -4,7 +4,7 @@ export default function Footer() {
   const linkClassName = "flex items-center gap-2 hover:underline hover:underline-offset-4 bg-white rounded-lg p-1";
 
   return (
-    <footer className="">
+    <footer className="z-10">
       <div className="w-full flex flex-col gap-6 flex-wrap items-center justify-center bg-neutral-700 p-6">
         <div className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
           <a
