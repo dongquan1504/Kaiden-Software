@@ -16,12 +16,17 @@ interface IBookingForm {
   // phoneNumber: string;
   // services: { key: string; name: string }[];
 }
+// const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
-  phoneNumber: Yup.string().required('Phone Number is required'),
+  phoneNumber: Yup.number()
+    // .min(10).max(10)
+    .required('Phone Number is required'),
+  deliveryDate: Yup.date().required('Delivery Date is required').nullable()
+    .default(undefined),
   services: Yup.object().shape({
     key: Yup.string(),
     name: Yup.string(),
@@ -32,6 +37,7 @@ const initialValues = {
   name: "",
   username: "",
   email: "",
+  deliveryDate: null,
   phoneNumber: "",
   services: {
     key: "landing-web",

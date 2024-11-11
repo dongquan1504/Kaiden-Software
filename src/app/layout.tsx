@@ -38,8 +38,10 @@ export default function RootLayout({
             <Header />
             <SidebarProvider>
               <Menu />
-              <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8 overflow-auto !h-400px">
-                <SidebarTrigger />
+              <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8 overflow-auto pt-20 !h-400px">
+                <SidebarTrigger
+                 className="fixed -ml-8 -mt-6"
+                />
                 {children}
               </main>
             </SidebarProvider>

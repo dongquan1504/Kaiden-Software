@@ -154,6 +154,7 @@ SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 interface itemProps { key: string, name: string }
 interface SelectProps {
   placeholder: string;
+  className?: string;
   items: itemProps[];
   formFieldProps?: {
     name: string,
@@ -163,7 +164,7 @@ interface SelectProps {
   }
 }
 
-export default function SelectCustomerForm({ placeholder = "select...", items = [], formFieldProps }: SelectProps) {
+export default function SelectCustomerForm({ placeholder = "select...", items = [], formFieldProps, className }: SelectProps) {
   // const params = rest
 
   return (
@@ -174,7 +175,7 @@ export default function SelectCustomerForm({ placeholder = "select...", items = 
       }}
       defaultValue={formFieldProps?.value?.key || items[0]?.key}
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className={`w-full ${className}`}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
