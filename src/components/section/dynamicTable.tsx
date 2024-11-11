@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 
 import * as React from "react"
@@ -13,7 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Filter } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -36,6 +37,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Select, SelectTrigger, SelectContent, SelectGroup, SelectItem, SelectValue } from "../ui/select"
+
+const rowPerPageItems = [
+  {
+    key: 5,
+    name: "5 Rows"
+  }, {
+    key: 10,
+    name: "10 Rows"
+  }, {
+    key: 20,
+    name: "20 Rows"
+  }
+]
 
 const data: Payment[] = [
   {
@@ -164,10 +179,20 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "service",
-    header: "Service",
+    // enableColumnFilter: true,
+    header: ({ column }) => {
+      console.log(column.getFilterValue())
+      return (<Button variant="ghost" onClick={() => column.setFilterValue("")}>
+        Service<Filter />
+      </Button>
+      )
+    },
+    // filterFn: (row:any, columnId:any, filterValue:any) => {
+    //   return true;// true or false based on your custom logic
+    // },
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("service")}</div>
-    ),
+    )
   },
   {
     accessorKey: "email",
@@ -238,6 +263,10 @@ export function DataTableDemo() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
+  const [pagination, setPagination] = React.useState({
+    pageIndex: 0, //initial page index
+    pageSize: rowPerPageItems[0].key, //default page size
+  });
 
   const table = useReactTable({
     data,
@@ -253,8 +282,15 @@ export function DataTableDemo() {
     state: {
       sorting,
       columnFilters,
+      // columnFilters: [
+      //   {
+      //     id: 'service',
+      //     value: 'Landing Web', // filter the name column by 'John' by default
+      //   },
+      // ],
       columnVisibility,
       rowSelection,
+      pagination
     },
   })
 
@@ -307,9 +343,9 @@ export function DataTableDemo() {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}
@@ -351,11 +387,27 @@ export function DataTableDemo() {
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
+        <div className="flex-1 text-sm text-muted-foreground">
+          <Select onValueChange={(pageSize: string) => {
+            setPagination({ pageIndex: 0, pageSize: parseFloat(pageSize) })
+          }}>
+            <SelectTrigger className="w-[150px]">
+              <SelectValue placeholder={`Select rows (${pagination.pageSize})`} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {rowPerPageItems.map((i: any) => (
+                  <SelectItem key={i.key} value={i.key}>{i.name}</SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
         <div className="space-x-2">
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
+            onClick={() => setPagination({ ...pagination, pageIndex: pagination.pageIndex - 1 })}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
@@ -363,7 +415,7 @@ export function DataTableDemo() {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
+            onClick={() => setPagination({ ...pagination, pageIndex: pagination.pageIndex + 1 })}
             disabled={!table.getCanNextPage()}
           >
             Next

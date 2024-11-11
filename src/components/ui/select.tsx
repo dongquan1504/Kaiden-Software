@@ -151,16 +151,16 @@ const SelectSeparator = React.forwardRef<
 ))
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 
-interface itemProps { key: string, name: string }
+export interface itemProps { key: string, name: string }
 interface SelectProps {
   placeholder: string;
   className?: string;
   items: itemProps[];
   formFieldProps?: {
-    name: string,
+    name?: string,
     value: itemProps
     onChange: (selectedObject: itemProps) => void,
-    onBlur: () => void,
+    onBlur?: () => void,
   }
 }
 
