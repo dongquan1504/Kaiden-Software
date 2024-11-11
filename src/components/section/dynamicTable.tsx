@@ -2,6 +2,7 @@
 "use client"
 
 import * as React from "react"
+import _uniq from "lodash/uniq"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -147,6 +148,40 @@ export type Payment = {
   service: string
 }
 
+const renderFilter = (table: any, id: keyof Payment) =>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="ghost" className="ml-auto">
+        <Filter />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent align="end">
+      {_uniq(data.map((row) => row[id]))
+        .map((row: any, index: any) => {
+          const { columnFilters = [] } = table.getState();
+          const checked = columnFilters.some((filter: any) => filter.value.includes(row));
+          const columnFiltersValue = columnFilters?.find((i: any) => i.id === id)?.value || [];
+          return (
+            <DropdownMenuCheckboxItem
+              key={row}
+              className="capitalize"
+              checked={checked}
+              onCheckedChange={(value) =>
+                // console.log(value)
+                table.setColumnFilters([{
+                  id: id, value: value ?
+                    [...columnFiltersValue, row]
+                    : columnFilters.splice(index, 1)
+                }])
+              }
+            >
+              {row}
+            </DropdownMenuCheckboxItem>
+          )
+        })}
+    </DropdownMenuContent>
+  </DropdownMenu>
+
 export const columns: ColumnDef<Payment>[] = [
   {
     id: "select",
@@ -180,16 +215,14 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "service",
     // enableColumnFilter: true,
-    header: ({ column }) => {
-      console.log(column.getFilterValue())
-      return (<Button variant="ghost" onClick={() => column.setFilterValue("")}>
-        Service<Filter />
-      </Button>
+    header: ({ table }) => {
+      // console.log(column.getFilterValue())
+      return (<div>
+        Service {renderFilter(table, "service")}
+      </div>
       )
     },
-    // filterFn: (row:any, columnId:any, filterValue:any) => {
-    //   return true;// true or false based on your custom logic
-    // },
+    filterFn: "arrIncludesSome",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("service")}</div>
     )
@@ -197,6 +230,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "email",
     header: ({ column }) => {
+      console.log(column)
       return (
         <Button
           variant="ghost"
@@ -260,6 +294,7 @@ export function DataTableDemo() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   )
+  console.log(columnFilters)
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
@@ -293,6 +328,9 @@ export function DataTableDemo() {
       pagination
     },
   })
+  console.log(table)
+
+  // React.useEffect(() => { table.setColumnFilters([{ id: "service", value: [] }]) }, [])
 
   return (
     <div className="w-full">
