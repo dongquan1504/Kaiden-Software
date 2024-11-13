@@ -1,0 +1,255 @@
+{
+  "minute_sensor_data": {
+    "id": "d473d9dd-d4c1-4405-a869-d0f1ecb6d74c",
+    "type": "humidity",
+    "current_value": "60",
+    "current_date": "2024-11-13T04:55:59.307Z",
+    "histories": [
+      {
+        "id": "dc5f0cfe-f1af-469f-b6cb-7741bd87f67d",
+        "value": "59",
+        "date_time": "2024-11-12T05:44:46.999Z"
+      },
+      {
+        "id": "69b332a4-528d-46e7-8861-d0c6534bdca0",
+        "value": "59",
+        "date_time": "2024-11-12T06:44:46.999Z"
+      },
+      {
+        "id": "4b0bb42b-5d18-4c4d-a9df-919e1fec4a4f",
+        "value": "60",
+        "date_time": "2024-11-12T07:44:46.999Z"
+      },
+      {
+        "id": "eb8df75d-f1d5-4be6-8b47-9cdb2fdaec99",
+        "value": "59",
+        "date_time": "2024-11-12T08:44:46.999Z"
+      },
+      {
+        "id": "be3cea68-602f-4776-8122-9744a9c8c21a",
+        "value": "59",
+        "date_time": "2024-11-12T09:44:46.999Z"
+      },
+      {
+        "id": "a04d8dc0-bf89-4ead-b414-65c1e690913d",
+        "value": "61",
+        "date_time": "2024-11-12T10:44:46.999Z"
+      },
+      {
+        "id": "33418ab9-b492-4a63-becb-cfdfc1b29bc4",
+        "value": "63",
+        "date_time": "2024-11-12T11:44:46.999Z"
+      },
+      {
+        "id": "f14c3256-4669-47cd-be38-d3dd71ecf4cf",
+        "value": "63",
+        "date_time": "2024-11-12T12:44:46.999Z"
+      },
+      {
+        "id": "b598b92b-2535-4d14-b70a-5e6f3fe23245",
+        "value": "61",
+        "date_time": "2024-11-12T13:44:46.999Z"
+      },
+      {
+        "id": "1629a26a-6f68-4423-8ff5-74ef46086000",
+        "value": "63",
+        "date_time": "2024-11-12T14:44:46.999Z"
+      },
+      {
+        "id": "f0b58c54-3ed4-4bc4-bb87-f703abf7e9c4",
+        "value": "62",
+        "date_time": "2024-11-12T15:44:46.999Z"
+      },
+      {
+        "id": "444aaa1b-540b-4132-982b-c5e4a2e185d9",
+        "value": "63",
+        "date_time": "2024-11-12T16:44:46.999Z"
+      },
+      {
+        "id": "2027f9df-4824-4474-90ba-aab58a2f05fd",
+        "value": "62",
+        "date_time": "2024-11-12T17:44:46.999Z"
+      },
+      {
+        "id": "28d7887f-15d9-4ff9-8426-5c8ebfe32ed7",
+        "value": "60",
+        "date_time": "2024-11-12T18:44:46.999Z"
+      },
+      {
+        "id": "07919e66-64d3-47d3-ba21-5f27a70631ba",
+        "value": "59",
+        "date_time": "2024-11-12T19:44:46.999Z"
+      },
+      {
+        "id": "5f179afa-0c95-43f2-afc2-18ce9646060f",
+        "value": "58",
+        "date_time": "2024-11-12T20:44:46.999Z"
+      },
+      {
+        "id": "1c85e59c-f3c3-4e86-8799-3e5f551b2715",
+        "value": "58",
+        "date_time": "2024-11-12T21:44:46.999Z"
+      },
+      {
+        "id": "dbb6713c-b0be-4468-8a01-45d07bb6ef47",
+        "value": "58",
+        "date_time": "2024-11-12T22:44:46.999Z"
+      },
+      {
+        "id": "8bfabc5f-565e-4671-a5a9-4328cba6ccc2",
+        "value": "58",
+        "date_time": "2024-11-12T23:44:46.999Z"
+      },
+      {
+        "id": "deda65c0-c43d-48e0-9fe8-aa40fe047076",
+        "value": "57",
+        "date_time": "2024-11-13T00:44:46.999Z"
+      },
+      {
+        "id": "640fe228-be11-467d-9d5e-dd4ef6cc2553",
+        "value": "58",
+        "date_time": "2024-11-13T01:44:46.999Z"
+      },
+      {
+        "id": "d408ace7-8156-4664-bb6b-07e5fbd34bd8",
+        "value": "59",
+        "date_time": "2024-11-13T02:44:46.999Z"
+      },
+      {
+        "id": "2d3d7b8d-43de-4142-bf62-dad0b8211020",
+        "value": "61",
+        "date_time": "2024-11-13T03:44:46.999Z"
+      }
+    ]
+  },
+  "hour_sensor_data": {
+    "id": "d473d9dd-d4c1-4405-a869-d0f1ecb6d74c",
+    "type": "humidity",
+    "current_value": "63",
+    "current_date": "2024-11-13T04:58:59.088Z",
+    "histories": [
+      {
+        "id": "8560fd72-fb1b-45cf-a254-9c442a7edacf",
+        "value": "55",
+        "date_time": "2024-11-07T04:44:47.034Z"
+      },
+      {
+        "id": "f1f1df20-bcd9-4bb7-b987-a736cfdef74c",
+        "value": "57",
+        "date_time": "2024-11-08T04:44:47.034Z"
+      },
+      {
+        "id": "4989f343-844c-4a83-ab60-1e8628cf29ec",
+        "value": "60",
+        "date_time": "2024-11-09T04:44:47.034Z"
+      },
+      {
+        "id": "beb7ccff-ac20-4e33-87bc-88a6378951ff",
+        "value": "58",
+        "date_time": "2024-11-10T04:44:47.034Z"
+      },
+      {
+        "id": "dd6bd4d4-628c-4480-a4a4-35a1135a53d8",
+        "value": "60",
+        "date_time": "2024-11-11T04:44:47.034Z"
+      },
+      {
+        "id": "630459d7-d542-4b7e-9b5d-c89a538614c0",
+        "value": "59",
+        "date_time": "2024-11-12T04:44:47.034Z"
+      }
+    ]
+  },
+  "day_sensor_data": {
+    "id": "d473d9dd-d4c1-4405-a869-d0f1ecb6d74c",
+    "type": "humidity",
+    "current_value": "63",
+    "current_date": "2024-11-13T04:59:59.324Z",
+    "histories": [
+      {
+        "id": "3b1b14e1-3ba5-47bd-bc41-88adb5f0c6fe",
+        "value": "55",
+        "date_time": "2024-10-16T04:44:47.045Z"
+      },
+      {
+        "id": "f7db69ce-df4b-446c-9897-5502a84022da",
+        "value": "53",
+        "date_time": "2024-10-23T04:44:47.045Z"
+      },
+      {
+        "id": "17c94752-2842-43fb-929d-75ad497dc00b",
+        "value": "55",
+        "date_time": "2024-10-30T04:44:47.045Z"
+      },
+      {
+        "id": "68674809-0bf3-4b50-a70f-6add03ccbdf3",
+        "value": "53",
+        "date_time": "2024-11-06T04:44:47.045Z"
+      }
+    ]
+  },
+  "week_sensor_data": {
+    "id": "d473d9dd-d4c1-4405-a869-d0f1ecb6d74c",
+
+    "type": "humidity",
+    "current_value": "64",
+    "current_date": "2024-11-13T05:00:59.265Z",
+    "histories": [
+      {
+        "id": "0913a4cf-f9fe-4dc0-9ddb-3c3a4b993b6b",
+        "value": "52",
+        "date_time": "2023-12-13T04:44:47.051Z"
+      },
+      {
+        "id": "4df20912-4e5c-4286-8409-1c35f3e6e9fd",
+        "value": "53",
+        "date_time": "2024-01-13T04:44:47.051Z"
+      },
+      {
+        "id": "cbd9527d-c73d-4716-b6e5-4641a06756e0",
+        "value": "52",
+        "date_time": "2024-02-13T04:44:47.051Z"
+      },
+      {
+        "id": "22ea668e-bac8-4aad-9908-9238ae853243",
+        "value": "51",
+        "date_time": "2024-03-13T04:44:47.051Z"
+      },
+      {
+        "id": "61600ad8-64d0-46f2-9f40-36fbe2ec0e8c",
+        "value": "49",
+        "date_time": "2024-04-13T04:44:47.051Z"
+      },
+      {
+        "id": "99dc03f5-eb57-4557-bda5-ea19b89697f0",
+        "value": "48",
+        "date_time": "2024-05-13T04:44:47.051Z"
+      },
+      {
+        "id": "2c1a4942-6b9a-41c7-b411-dc0322d09cb3",
+        "value": "48",
+        "date_time": "2024-06-13T04:44:47.051Z"
+      },
+      {
+        "id": "4c812c24-673b-4c30-9986-11b457da9611",
+        "value": "48",
+        "date_time": "2024-07-13T04:44:47.051Z"
+      },
+      {
+        "id": "03287814-a68f-4dc8-b9fc-f7ad2db9cf44",
+        "value": "50",
+        "date_time": "2024-08-13T04:44:47.051Z"
+      },
+      {
+        "id": "1b52551e-d9a7-472f-89d1-b852aa1bd458",
+        "value": "51",
+        "date_time": "2024-09-13T04:44:47.051Z"
+      },
+      {
+        "id": "5b20a44f-9943-45fd-a922-0c86a91cb320",
+        "value": "52",
+        "date_time": "2024-10-13T04:44:47.051Z"
+      }
+    ]
+  }
+}
