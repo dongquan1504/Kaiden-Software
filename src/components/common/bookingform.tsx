@@ -30,8 +30,6 @@ const BookingForm = ({ useForm }: BookingFormProp) => {
   const { setValue, register, control, formState: { errors } } = useForm;
 
   return (
-    // <FormProvider {...useForm}>
-    // <Form {...useForm}>
     <form className="space-y-8">
       <div className="grid grid-cols-4 items-center gap-4">
         <Label htmlFor="name" className="text-right">
@@ -113,8 +111,6 @@ const BookingForm = ({ useForm }: BookingFormProp) => {
         {errors.services && <span>{errors.services.message}</span>}
       </div>
     </form>
-    // </Form>
-    // </FormProvider>
   );
 };
 

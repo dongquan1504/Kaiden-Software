@@ -4,6 +4,8 @@ const PAGE_URL = {
   INBOX:"/inbox",
   CALENDAR:"/calendar",
   SETTINGS:"/settings",
+  LOGIN: "/login",
+  REGISTER: "/register",
 }
 
 export { PAGE_URL }

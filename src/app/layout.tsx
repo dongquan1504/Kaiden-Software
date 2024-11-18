@@ -1,11 +1,18 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
+"use client";
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import localFont from "next/font/local";
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import Menu from "@/components/common/menu";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { PAGE_URL } from "@/constant/url";
+import { useAppSelector } from '@/lib/hooks';
+import "./globals.css";
+
+import StoreProvider from "./StoreProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,10 +25,35 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Kaiden Software",
-  description: "Supplying cutting-edge software services.",
-};
+const renderContent = (children: React.ReactNode) => {
+  const pathname = usePathname();
+  const isNotLayout = [PAGE_URL.LOGIN, PAGE_URL.REGISTER].includes(pathname);
+
+  // const user = useAppSelector((state) => state.user)
+  // console.log(user)
+
+  // useEffect(() => {
+  //   if (!!user) return;
+
+  //   router.push(PAGE_URL.LOGIN);
+  // }, [user])
+
+  return isNotLayout ? children : <div className="w-full h-screen flex flex-col justify-between">
+    <div>
+      <Header />
+      <SidebarProvider>
+        <Menu />
+        <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8 overflow-auto pt-20 !h-400px">
+          <SidebarTrigger
+          //  className="fixed mt-20 mlm"
+          />
+          {children}
+        </main>
+      </SidebarProvider>
+    </div>
+    <Footer />
+  </div>
+}
 
 export default function RootLayout({
   children,
@@ -29,26 +61,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="w-full h-screen flex flex-col justify-between">
-          <div>
-            <Header />
-            <SidebarProvider>
-              <Menu />
-              <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start p-8 overflow-auto pt-20 !h-400px">
-                <SidebarTrigger
-                 className="fixed -ml-8 -mt-6"
-                />
-                {children}
-              </main>
-            </SidebarProvider>
-          </div>
-          <Footer />
-        </div>
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <head>
+          <title>Kaiden Software</title>
+          <meta name="description" content="Supplying cutting-edge software services." />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {renderContent(children)}
+        </body>
+      </html>
+    </StoreProvider>
   );
 }
