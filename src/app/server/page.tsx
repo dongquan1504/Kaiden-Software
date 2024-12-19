@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 // import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { receiveMessageFromParent } from '@/components/section/post-message-api';
+import { receiveMessageFromParent } from '@/services/post-message-api';
 
 const pdfFiles = [{
   id: 1,
