@@ -1,49 +1,51 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { useEffect, useRef, useState } from 'react';
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-// import MessageReceiver from '@/components/section/post-message-api';
+import { receiveMessageFromParent } from '@/components/section/post-message-api';
+
+const pdfFiles = [{
+  id: 1,
+  doc_url: "https://www.aeee.in/wp-content/uploads/2020/08/Sample-pdf.pdf"
+},
+{
+  id: 2,
+  doc_url: "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"
+}]
 
 const IframePage = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  // const [isSendMessage, setIsSendMessage] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
+  const [isSended, setIsSended] = useState<boolean>(false);
   const [receiveMessage, setReceiveMessage] = useState<string>('');
 
   const sendMessage = () => {
+    setIsSended(true);
     if (iframeRef.current) {
-      // setIsSendMessage(true);
-      iframeRef.current.contentWindow?.postMessage(message, '*');
+      iframeRef.current.contentWindow?.postMessage(pdfFiles, '*');
     }
   };
 
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      // Check if event.data is an object and convert it to a string
-      if (typeof event.data === 'string') {
-        setReceiveMessage(event.data);
+    const cleanup = receiveMessageFromParent((message) => {
+      if (typeof message === 'string') {
+        setReceiveMessage(message)
       }
-    };
-  
-    window.addEventListener('message', handleMessage);
-  
-    return () => {
-      window.removeEventListener('message', handleMessage);
-    };
+    })
+
+    // Cleanup the event listener on component unmount
+    return cleanup
   }, []);
 
   return (
     <div>
       <h1>{receiveMessage}</h1>
       <div className='flex justify-between'>
-      <Input value={message} onChange={(e: any) => setMessage(e.target.value)} />
-      <Button onClick={sendMessage}>Send Message</Button>
+        <Button onClick={sendMessage}>Send Message</Button>
       </div>
 
-      <iframe ref={iframeRef} src="http://localhost:9000/review" style={{ width: '100%', height: '500px', border: '1px solid black' }} />
-      {/* {isSendMessage &&
-        <iframe ref={iframeRef} src="http://localhost:9000/review" style={{ width: '100%', height: '500px', border: '1px solid black' }} />} */}
+      {/* <iframe ref={iframeRef} src="http://localhost:9000/review" style={{ width: '100%', height: '500px', border: '1px solid black' }} /> */}
+        <iframe ref={iframeRef} src="http://localhost:9000/review" style={{ width: '100%', height: '500px', border: '1px solid black', display: isSended ? "block" : "none" }} />
     </div>
   );
 };
