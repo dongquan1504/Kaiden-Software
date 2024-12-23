@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 import { receiveMessageFromParent } from '@/services/post-message-api';
 
+const previewUrl = 'http://localhost:9000/review';
+
 const pdfFiles = [{
   id: 1,
   doc_url: "https://icw-data-dev.oss-cn-hongkong.aliyuncs.com/202/519a6a15-cca0-4562-f0f3-985edf9f1b76%2CCPC.pdf?OSSAccessKeyId=LTAIMUAAHQh0NsL5&Expires=1735295608&Signature=JJ4moTf5dvd2YYujHV2p4Juvk8A%3D"
@@ -49,9 +51,17 @@ const IframePage = () => {
     return cleanup
   }, []);
 
+  const serializedData = encodeURIComponent(JSON.stringify(pdfFiles));
+  const previewUrlWithParams = `${previewUrl}?data=${serializedData}`;
+
   return (
     <div>
       <h1>{receiveMessage}</h1>
+      <a className='mr-8' href={previewUrlWithParams} data-json={pdfFiles} target="_blank">
+        <Button>
+          Click
+        </Button>
+      </a>
       <Dialog onOpenChange={handleDialogOpenChange}>
         <DialogTrigger asChild>
           <Button>
@@ -60,9 +70,10 @@ const IframePage = () => {
         </DialogTrigger>
         <DialogContent className='flex flex-col items-center justify-center w-full h-full max-w-none max-h-none'>
           <iframe
+            // target="_blank"
             key={iframeKey}
             ref={iframeRef}
-            src="http://localhost:9000/review"
+            src={previewUrl}
             onLoad={handleIframeLoad}
             style={{ width: '100%', height: '800px', border: '1px solid black' }}
           />
