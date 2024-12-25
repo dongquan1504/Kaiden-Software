@@ -25,6 +25,7 @@ const IframePage = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [receiveMessage, setReceiveMessage] = useState<string>('');
   const [iframeKey, setIframeKey] = useState<number>(0);
+  const [targetWindow, setTargetWindow] = useState<Window | null>(null);
 
   const handleDialogOpenChange = (isOpen: boolean) => {
     if (isOpen) {
@@ -39,6 +40,26 @@ const IframePage = () => {
       }
     }, 400);
   };
+
+  const handleClick = () => {
+    const newWindow = window.open(previewUrl);
+    if (!newWindow) return;
+    if (newWindow) {
+      setTargetWindow(newWindow);
+    } else {
+      console.error('Failed to open new window');
+    }
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (targetWindow) {
+        targetWindow.postMessage(pdfFiles, 'http://localhost:9000/review');
+      } else {
+        console.error('Target window is not open');
+      }
+    }, 2500);
+  }, [targetWindow]);
 
   useEffect(() => {
     const cleanup = receiveMessageFromParent((message) => {
@@ -57,6 +78,7 @@ const IframePage = () => {
   return (
     <div>
       <h1>{receiveMessage}</h1>
+      <Button className='mr-8' onClick={handleClick}>Open New Window</Button>
       <a className='mr-8' href={previewUrlWithParams} data-json={pdfFiles} target="_blank">
         <Button>
           Click
