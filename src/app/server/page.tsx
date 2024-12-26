@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 // import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
@@ -25,6 +25,7 @@ const IframePage = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [receiveMessage, setReceiveMessage] = useState<string>('');
   const [iframeKey, setIframeKey] = useState<number>(0);
+  const [isIframeLoaded, setIsIframeLoaded] = useState<boolean>(false);
   const [targetWindow, setTargetWindow] = useState<Window | null>(null);
 
   const handleDialogOpenChange = (isOpen: boolean) => {
@@ -33,13 +34,23 @@ const IframePage = () => {
     }
   };
 
-  const handleIframeLoad = () => {
-    setTimeout(() => {
-      if (iframeRef.current) {
-        iframeRef.current.contentWindow?.postMessage(pdfFiles, '*');
+  const handleIframeLoad = useCallback(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      console.log("Iframe has fully rendered");
+      setIsIframeLoaded(true);
+    } else {
+      console.error("Iframe contentWindow is not accessible");
+    }
+  }, []);
+  
+  useEffect(() => {
+    if (isIframeLoaded) {
+      if (iframeRef.current && iframeRef.current.contentWindow) {
+        console.log("Iframe load end callback");
+        iframeRef.current.contentWindow.postMessage(pdfFiles, 'http://localhost:9000');
       }
-    }, 400);
-  };
+    }
+  }, [isIframeLoaded]);
 
   const handleClick = () => {
     const newWindow = window.open(previewUrl);
@@ -65,6 +76,11 @@ const IframePage = () => {
     const cleanup = receiveMessageFromParent((message) => {
       if (typeof message === 'string') {
         setReceiveMessage(message)
+        if (message === 'iframeLoaded') {
+          if (iframeRef.current && iframeRef.current.contentWindow) {
+            iframeRef.current.contentWindow.postMessage(pdfFiles, 'http://localhost:9000');
+          }
+        }
       }
     })
 
@@ -93,6 +109,7 @@ const IframePage = () => {
         <DialogContent className='flex flex-col items-center justify-center w-full h-full max-w-none max-h-none'>
           <iframe
             // target="_blank"
+            loading="lazy"
             key={iframeKey}
             ref={iframeRef}
             src={previewUrl}
